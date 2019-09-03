@@ -1,3 +1,5 @@
+from colored import fg, bg, attr
+
 checklist = list()
 
 # CREATE
@@ -26,7 +28,7 @@ def list_all_items():
 
 # MARK COMPLETED
 def mark_completed(index):
-    checklist[index] = "√ " + checklist[index]
+    checklist[int(index)] = "√ " + checklist[int(index)]
 
 # USER INPUT
 def user_input(prompt):
@@ -35,17 +37,20 @@ def user_input(prompt):
 
 # SELECT
 def select(function_code):
+    # CLear Terminal
+    print(chr(27) + "[2J")
+
     # Ignore Case
     function_code = function_code.upper()
 
     # Create item
-    if function_code == "C":
-        input_item = user_input("Input item: ")
+    if function_code == "A":
+        input_item = user_input("Add item: ")
         create(input_item)
 
     # Read item
     elif function_code == "R":
-        item_index = user_input("Index Number: ")
+        item_index = user_input("Index Number to Print: ")
         read(item_index)
 
     # Update item
@@ -53,6 +58,16 @@ def select(function_code):
         item_index = user_input("Index Number to Update: ")
         changeTo = user_input("New Item Name: ")
         update(item_index, changeTo)
+
+    # Check item
+    elif function_code == "CH":
+        item_index = user_input("Index Number to Check: ")
+        mark_completed(item_index)
+
+    # Uncheck item
+    elif function_code == "UN":
+        item_index = user_input("Index Number to Uncheck: ")
+        destroy(item_index)
 
     # Destroy item
     elif function_code == "D":
@@ -74,6 +89,6 @@ def select(function_code):
 
 running = True
 while running:
-    print("Press C to add to list, R to Read from list, P to display list, U to update an item, D to delete an item, and Q to quit")
+    print(attr('bold'), fg('white'), bg('green'), "Press A to add to list, R to Read from list, P to display list, U to update an item, D to delete an item, and Q to quit")
     selection = user_input("")
     running = select(selection)
