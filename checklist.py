@@ -30,6 +30,10 @@ def list_all_items():
 def mark_completed(index):
     checklist[int(index)] = "√ " + checklist[int(index)]
 
+# UNCHECK
+def uncheck(index):
+    checklist[int(index)] = checklist[int(index)].replace("√ ", "")
+
 # USER INPUT
 def user_input(prompt):
     user_input = input(prompt)
@@ -67,7 +71,7 @@ def select(function_code):
     # Uncheck item
     elif function_code == "UN":
         item_index = user_input("Index Number to Uncheck: ")
-        destroy(item_index)
+        uncheck(item_index)
 
     # Destroy item
     elif function_code == "D":
