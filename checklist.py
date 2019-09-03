@@ -17,11 +17,16 @@ def update(index, item):
 def destroy(index):
     checklist.pop(index)
 
+# LIST ALL ITEMS
 def list_all_items():
     index = 0
     for list_item in checklist:
         print("{} {}".format(index, list_item))
         index += 1
+
+# MARK COMPLETED
+def mark_completed(index):
+    checklist[index] = "√ " + checklist[index]
 
 def test():
     create("purple sox")
