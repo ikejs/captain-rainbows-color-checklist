@@ -91,6 +91,16 @@ def select(function_code):
         print("Unknown Option")
     return True
 
+def test():
+    create("purple sox")
+    create("red cloak")
+    update(0, "purple sox")
+    destroy(1)
+    print(read(0))
+    list_all_items()
+
+test()
+
 running = True
 while running:
     print(attr('bold'), fg('white'), bg('green'), "Press A to add to list, R to Read from list, P to display list, U to update an item, D to delete an item, and Q to quit")
